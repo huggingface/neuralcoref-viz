@@ -46,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (queryText) {
 			$input.value = queryText;
 			coref.parse(queryText);
+		} else {
+			$form.submit();  // Trigger run with default text.
 		}
 	}
 	
