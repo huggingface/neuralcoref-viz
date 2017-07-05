@@ -32,6 +32,7 @@ class Coref {
 	onStart =   () => {};
 	onSuccess = () => {};
 	container?: HTMLElement;
+	svgContainer?: SVGSVGElement;
 	
 	constructor(endpoint: string, opts: any) {
 		this.endpoint = endpoint;
@@ -41,6 +42,14 @@ class Coref {
 		if (opts.onSuccess) {
 			(<any>this).onSuccess = opts.onSuccess;
 		}
+		
+		window.addEventListener('resize', this.svgResize);
+	}
+	
+	svgResize() {
+		if (!this.container || !this.svgContainer) { return ; }
+		this.svgContainer.setAttribute('width', `${this.container.scrollWidth}`);   /// Caution: not offsetWidth.
+		this.svgContainer.setAttribute('height', `${this.container.scrollHeight}`);
 	}
 	
 	parse(text: string) {
@@ -69,8 +78,13 @@ class Coref {
 			m.singleScore = res.singleScores[m.index] || undefined;
 		}
 		const markup = Displacy.render(res.cleanedText, mentions);
-		if (!this.container) { return ; }
-		// console.log(markup);  // todo remove
+		if (!this.container || !this.svgContainer) { return ; }
+		
 		this.container.innerHTML = `<div class="text">${markup}</div>`;
+		/// SVG
+		this.svgResize();
+		// this.svgContainer.width = this.container
+		window.container = this.container;
+		window.svgContainer = this.svgContainer;
 	}
 }

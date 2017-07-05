@@ -84,9 +84,13 @@ code, pre {
 	}
 }
 
+.container-wrapper {
+	overflow-x: auto;
+	position: relative;
+}
+
 .container {
 	font-size: 20px;
-	overflow-x: auto;
 	white-space: nowrap;
 	padding: 180px 40px;
 	mark {
@@ -112,6 +116,13 @@ body.debug {
 	span.single-score {
 		visibility: visible !important;
 	}
+}
+
+.svg-container {
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	z-index: -1;
+	background-color: pink;
 }
 
 /**

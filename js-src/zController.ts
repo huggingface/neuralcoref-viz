@@ -33,10 +33,12 @@ const updateURL = (text) => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	const $input    = document.querySelector('input.input-message') as HTMLInputElement;
-	const $form     = document.querySelector('form.js-form') as HTMLFormElement;
-	const $checkbox = document.querySelector('.js-checkbox') as HTMLElement;
-	coref.container = document.querySelector('.container') as HTMLElement;
+	const $input        = document.querySelector('input.input-message') as HTMLInputElement;
+	const $form         = document.querySelector('form.js-form') as HTMLFormElement;
+	const $checkbox     = document.querySelector('.js-checkbox') as HTMLElement;
+	const $svgContainer = document.querySelector('.svg-container') as SVGSVGElement;
+	coref.container     = document.querySelector('.container') as HTMLElement;
+	coref.svgContainer  = $svgContainer;
 	
 	{
 		// Initial text
