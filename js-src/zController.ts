@@ -27,6 +27,7 @@ const updateURL = (text) => {
 document.addEventListener('DOMContentLoaded', () => {
 	const $input = document.querySelector('input.input-message') as HTMLInputElement;
 	const $form  = document.querySelector('form.js-form') as HTMLFormElement;
+	coref.container = document.querySelector('.container') as HTMLElement;
 	
 	{
 		// Initial text

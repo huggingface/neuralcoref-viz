@@ -31,6 +31,7 @@ class Coref {
 	endpoint: string;
 	onStart =   () => {};
 	onSuccess = () => {};
+	container?: HTMLElement;
 	
 	constructor(endpoint: string, opts: any) {
 		this.endpoint = endpoint;
@@ -55,13 +56,16 @@ class Coref {
 				this.render(res);
 			}
 			else {
-				console.log('Error', request);
+				console.error('Error', request);
 			}
 		};
 		request.send();
 	}
 	
 	render(res: Response) {
-		console.log(res);
+		const markup = Displacy.render(res.cleanedText, (<any>res).entities);
+		if (!this.container) { return ; }
+		console.log(markup);
+		this.container.innerHTML = `<div class="text">${markup}</div>`;
 	}
 }
