@@ -29,7 +29,7 @@ class Displacy {
 			if (i < spans.length - 1) {
 				const sNext = spans[i+1];
 				if (s.start < sNext.start && s.end > sNext.start) {
-					alert("Spans: strict overlapping");
+					console.log("ERROR", "Spans: strict overlapping");
 				}
 			}
 		});
@@ -79,6 +79,10 @@ class Displacy {
 			for (const sT of spanTags) {
 				if (sT.tag === "start") {
 					out.append(`<mark data-entity="${ sT.span.type.toLowerCase() }" data-index="${ (<any>sT.span).index }">`);
+					const singleScore = (<any>sT.span).singleScore;
+					if (singleScore) {
+						out.append(`<span class="single-score">${ singleScore.toFixed(3) }</span>`);
+					}
 				} else {
 					out.append(`</mark>`);
 				}

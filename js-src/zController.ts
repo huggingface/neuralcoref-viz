@@ -6,6 +6,14 @@ const loading = () => {
 	document.body.classList.toggle('loading');
 };
 
+const toggleDebug = () => {
+	document.body.classList.toggle('debug');
+	const icons = document.querySelectorAll('.svg-checkbox');
+	(<any>icons).forEach((icon) => {
+		icon.classList.toggle('hide');
+	});
+};
+
 const coref = new Coref(ENDPOINT, {
 	onStart: loading,
 	onSuccess: loading,
@@ -25,8 +33,9 @@ const updateURL = (text) => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	const $input = document.querySelector('input.input-message') as HTMLInputElement;
-	const $form  = document.querySelector('form.js-form') as HTMLFormElement;
+	const $input    = document.querySelector('input.input-message') as HTMLInputElement;
+	const $form     = document.querySelector('form.js-form') as HTMLFormElement;
+	const $checkbox = document.querySelector('.js-checkbox') as HTMLElement;
 	coref.container = document.querySelector('.container') as HTMLElement;
 	
 	{
@@ -54,6 +63,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		updateURL(text);
 		coref.parse(text);
 	});
+	
+	$checkbox.addEventListener('click', () => {
+		toggleDebug();
+	});
+	
+	// Turn on debug mode by default:
+	toggleDebug();
 });
 
 

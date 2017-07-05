@@ -63,7 +63,12 @@ class Coref {
 	}
 	
 	render(res: Response) {
-		const markup = Displacy.render(res.cleanedText, (<any>res).mentions);  // We will sort the second param in Displacy
+		const mentions = (<any>res).mentions;  // We will sort them in Displacy
+		for (const m of mentions) {
+			// Let's add each mention's singleScore
+			m.singleScore = res.singleScores[m.index] || undefined;
+		}
+		const markup = Displacy.render(res.cleanedText, mentions);
 		if (!this.container) { return ; }
 		// console.log(markup);  // todo remove
 		this.container.innerHTML = `<div class="text">${markup}</div>`;
