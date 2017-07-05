@@ -5,5 +5,5 @@ git pull
 bower install
 npm install
 grunt
-
+tsc
 
