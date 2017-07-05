@@ -47,7 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	$form.addEventListener('submit', (evt) => {
 		evt.preventDefault();
-		const text = $input.value;
+		const text = ($input.value.length > 0)
+			? $input.value
+			: DEFAULT_NLP_TEXT;
 		updateURL(text);
 		coref.parse(text);
 	});
