@@ -92,7 +92,7 @@ code, pre {
 .container {
 	font-size: 20px;
 	white-space: nowrap;
-	padding: 180px 40px;
+	padding: 300px 40px 200px 40px;   /// Keep a large-ish bottom padding b/c we use it to scroll the whole container.
 	mark {
 		position: relative;
 		span.single-score {
@@ -122,7 +122,34 @@ body.debug {
 	position: absolute;
 	top: 0; left: 0; right: 0; bottom: 0;
 	z-index: -1;
-	background-color: pink;
+	// background-color: pink;
+}
+
+
+/**
+ * Arrows
+ */
+
+.displacy-arrow {
+	color: #cad2cd; // #87908a;
+	visibility: hidden;
+	.displacy-label {
+		font-family: @fontMonospace;
+		font-size: 12px;
+	}
+	&.score-ok {
+		color: #ff9378;
+	}
+	&.score-best {
+		color: #ff211d;
+		visibility: visible;
+	}
+}
+
+body.debug {
+	.displacy-arrow {
+		visibility: visible !important;
+	}
 }
 
 /**

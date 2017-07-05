@@ -82,9 +82,42 @@ class Coref {
 		
 		this.container.innerHTML = `<div class="text">${markup}</div>`;
 		/// SVG
+		this.svgContainer.textContent = "";  // Empty
 		this.svgResize();
-		// this.svgContainer.width = this.container
-		window.container = this.container;
-		window.svgContainer = this.svgContainer;
+		(<any>window).container = this.container;
+		(<any>window).svgContainer = this.svgContainer;
+		/**
+		 * Arrows preparation
+		 */
+		const endY = document.querySelector('.container .text')!.getBoundingClientRect().top 
+			- this.container.getBoundingClientRect().top
+			- 2;
+		SvgArrow.yArrows = endY;
+		/**
+		 * Render arrows
+		 */
+		for (const [__from, scores] of Object.entries(res.pairScores)) {
+			const from = parseInt(__from, 10);   /// Convert all string keys to ints...
+			for (const [__to, score] of Object.entries(scores)) {
+				const to = parseInt(__to, 10);
+				
+				// Positions:
+				const markFrom = document.querySelector(`mark[data-index="${from}"]`) as HTMLElement;
+				const markTo   = document.querySelector(`mark[data-index="${to}"]`) as HTMLElement;
+				// console.log(markFrom, markTo, score);  // todo remove
+				const arrow = new SvgArrow(this.container, markFrom, markTo, score);
+				// Is this a resolved coref?
+				if (score >= Math.max(...Object.values(scores))) {
+					arrow.classNames.push('score-ok');  // Best pairwise score
+					// Is it the better than the singleScore?
+					const singleScore = res.singleScores[from];
+					if (singleScore && score >= singleScore) {
+						arrow.classNames.push('score-best');
+					}
+				}
+				
+				this.svgContainer.appendChild(arrow.generate());
+			}
+		}
 	}
 }
