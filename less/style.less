@@ -1,0 +1,105 @@
+@import (less) "bower_components/normalize.css/normalize.css";
+
+@import "mixins/bfc.less";
+@import "mixins/clearfix.less";
+@import "mixins/size.less";
+@import "mixins/user-select.less";
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+code, pre {
+	background-color: rgba(0,0,0,0.04);
+	border-radius: 3px;
+	padding: 2px 6px;
+	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+	font-size: 12px;
+	color: #2f2f2f;
+}
+
+.header {
+	padding: 18px 18px;
+	.input-wrapper {
+		background: #c5c5c5;
+		padding: 0.5rem 1rem;
+		margin: 0 0.75rem 0.75rem 0;
+		border-color: #181818;
+		border-radius: .5rem;
+		width: 76%;
+		.wrapper-inner {
+			width: 100%;
+			position: relative;
+			.clearfix();
+			.input-message-wrapper {
+				position: absolute;
+				left: 0;
+				right: 50px;
+			}
+			input.input-message {
+				outline: none;
+				border: none;
+				padding: 0;
+				background-color: transparent;
+				font-size: 20px;
+				line-height: 28px;
+				width: 100%;
+			}
+			button.input-button {
+				float: right;
+				outline: none;
+				border: none;
+			}
+		}
+	}
+}
+
+
+
+
+/**
+ * Elements from Displacy
+ */
+
+
+.c-input__icon {
+	margin-left: 0.75em
+}
+.c-input__button {
+	font-size: inherit;
+	background: transparent;
+	color: inherit;
+	cursor: pointer
+}
+.c-input__button.c-input__button--large {
+	font-size: 1.5em
+}
+.c-input__button__icon {
+	width: 1.25em;
+	height: 1.25em
+}
+.loading .c-input__button__icon {
+	display: none
+}
+.c-input__button__spinner {
+	width: 1.15em;
+	height: 1.15em;
+	display: none;
+	-webkit-animation: spinner 0.5s linear infinite;
+	animation: spinner 0.5s linear infinite
+}
+.loading .c-input__button__spinner {
+	display: inline-block
+}
+@-webkit-keyframes spinner {
+	to {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg)
+	}
+}
+@keyframes spinner {
+	to {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg)
+	}
+}

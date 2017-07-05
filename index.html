@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Neural Coreference – Hugging Face</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="/dist/style.css">
+</head>
+<body>
+	<div class="header">
+		<div class="input-wrapper">
+			<form class="js-form">
+				<div class="wrapper-inner">
+					<div class="input-message-wrapper">
+						<input class="input-message" type="text" name="text" placeholder="Your sentence here..." autocomplete="off" autofocus>
+					</div>
+					<button class="input-button c-input__button">
+						<svg aria-hidden="true" viewBox="0 0 20 20" width="20" height="20" fill="currentColor" class="o-icon c-input__button__icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons.svg#icon-search"></use>
+						</svg>
+						<svg aria-hidden="true" viewBox="0 0 20 20" width="20" height="20" fill="currentColor" class="o-icon c-input__button__spinner">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/icons.svg#icon-spinner"></use>
+						</svg>
+					</button>
+				</div>
+			</form>
+		</div>
+		<!--<a role="button" aria-label="Download" data-tooltip="Download" class="c-input" id="download" download="displacy.svg">
+			<svg aria-hidden="true" viewBox="0 0 20 20" width="20" height="20" fill="currentColor" class="o-icon c-input__button">
+				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/img/icons.svg#icon-download"></use>
+			</svg>
+		</a>-->
+	</div>
+	
+	<div class="result">
+		displaCy uses JavaScript, SVG and CSS to show you how computers understand language
+		
+		<br>
+		<br>
+		<br>
+		<br>
+		
+		<div class="displacy-google">'<mark data-entity="work_of_art">Lawrence of Arabia</mark>' is a highly rated <mark data-entity="work_of_art">film biography</mark> about <mark data-entity="location">British</mark> <mark data-entity="person">Lieutenant</mark> <mark data-entity="person">T. E. Lawrence</mark>. <mark data-entity="person">Peter O'Toole</mark> plays <mark data-entity="person">Lawrence</mark> in the <mark data-entity="work_of_art">film</mark>.</div>
+	</div>
+	
+	<script src="/dist/script.js"></script>
+	<script>
+	(function() {
+		if (window.location.hostname === 'localhost') {
+			var s = document.createElement('script');
+			s.setAttribute('src', '//localhost:35729/livereload.js');
+			document.body.appendChild(s);
+		}
+	})();
+	</script>
+	<script>
+	// Google Analytics was here.
+	</script>
+</body>
+</html>
