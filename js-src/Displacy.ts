@@ -78,7 +78,7 @@ class Displacy {
 			
 			for (const sT of spanTags) {
 				if (sT.tag === "start") {
-					out.append(`<mark data-entity="${ sT.span.type.toLowerCase() }">`);
+					out.append(`<mark data-entity="${ sT.span.type.toLowerCase() }" data-index="${ (<any>sT.span).index }">`);
 				} else {
 					out.append(`</mark>`);
 				}
