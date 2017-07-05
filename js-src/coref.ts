@@ -63,7 +63,7 @@ class Coref {
 	}
 	
 	render(res: Response) {
-		const markup = Displacy.render(res.cleanedText, (<any>res).entities);  // We will sort the second param in Displacy
+		const markup = Displacy.render(res.cleanedText, (<any>res).mentions);  // We will sort the second param in Displacy
 		if (!this.container) { return ; }
 		console.log(markup);  // todo remove
 		this.container.innerHTML = `<div class="text">${markup}</div>`;
