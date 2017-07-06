@@ -14,6 +14,62 @@ declare interface Coreference {
 	resolved: string;
 }
 
+declare interface SpansEmbeddings {
+	Doc: string;
+	Mention: string[];
+	MentionLeft: string[];
+	MentionRight: string[];
+	Sentence: string[];
+}
+
+declare interface WordsEmbeddings {
+	MentionFirstWord: string;
+	MentionHead: string;
+	MentionLastWord: string;
+	MentionRootHead: string;
+	NextWord: string;
+	PreviousWord: string;
+	SecondNextWord: string;
+	SecondPreviousWord: string;
+}
+
+declare interface MentionFeatures {
+	MentionLength: number;
+	MentionNormLocation: number;
+	MentionType: string;
+	IsMentionNested: number;
+	DocGenre?:	string | null;
+}
+
+declare interface MentionsPairFeatures {
+	SameSpeaker: number;
+	AntMatchMentionSpeaker: number;
+	MentionMatchSpeaker: number;
+	HeadsAgree: number;
+	ExactStringMatch: number;
+	RelaxedStringMatch: number;
+	SentenceDistance: number;
+	MentionDistance: number;
+	Overlapping: number;
+	M1Features: MentionFeatures;
+	M2Features: MentionFeatures;
+	DocGenre: string | null;
+}
+
+declare interface SingleFeatures {
+	features: MentionFeatures;
+	spansEmbeddings: SpansEmbeddings;
+	wordsEmbeddings: WordsEmbeddings;
+}
+
+declare interface PairFeatures {
+	pairFeatures: MentionsPairFeatures;
+	antecedentSpansEmbeddings: SpansEmbeddings;
+	antecedentWordsEmbeddings: WordsEmbeddings;
+	mentionSpansEmbeddings: SpansEmbeddings;
+	mentionWordsEmbeddings: WordsEmbeddings;
+}
+
 declare interface Response {
 	cleanedText: string;
 	corefResText: string;
@@ -24,6 +80,8 @@ declare interface Response {
 	                                                             /// Single scores are to be compared to the set of pairScores (for the same mention).
 	                                                             /// If it's higher than every pair score, it's a single mention.
 	cleanedContext: string;                                      /// Cleaned version of the context.
+	singleFeatures: { [id: number]: SingleFeatures | null };
+	pairFeatures: { [id: number]: { [id: number]: PairFeatures } };
 	isResolved: boolean;
 }
 
@@ -62,6 +120,7 @@ class Coref {
 			if (request.status >= 200 && request.status < 400) {
 				this.onSuccess();
 				const res: Response = JSON.parse(request.responseText);
+				console.log(res)
 				this.render(res);
 			}
 			else {
