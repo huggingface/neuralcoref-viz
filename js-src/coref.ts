@@ -120,7 +120,6 @@ class Coref {
 			if (request.status >= 200 && request.status < 400) {
 				this.onSuccess();
 				const res: Response = JSON.parse(request.responseText);
-				console.log(res)
 				this.render(res);
 			}
 			else {
