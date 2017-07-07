@@ -92,7 +92,7 @@ code, pre {
 .container {
 	font-size: 20px;
 	white-space: nowrap;
-	padding: 300px 40px 200px 40px;   /// Keep a large-ish bottom padding b/c we use it to scroll the whole container.
+	padding: 300px 40px 180px 40px;   /// Keep a large-ish bottom padding b/c we use it to scroll the whole container. cf. media queries
 	mark {
 		position: relative;
 		span.single-score {
@@ -171,6 +171,23 @@ body.debug {
 		background-color: #696969;
 	}
 }
+
+/**
+ * Media queries
+ */
+
+@media (min-height: 700px) and (max-height: 800px) {
+	.container {
+		padding-bottom: 90px;
+	}
+}
+
+@media (max-height: 700px) {
+	.container {
+		padding-bottom: 40px;
+	}
+}
+
 
 /**
  * Elements from Displacy
