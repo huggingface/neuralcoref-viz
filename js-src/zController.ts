@@ -1,6 +1,13 @@
 
 const ENDPOINT = "https://coref.huggingface.co/coref";
-const DEFAULT_NLP_TEXT = `'Lawrence of Arabia' is a highly rated film biography about British Lieutenant T. E. Lawrence. Peter O'Toole plays Lawrence in the film.`;
+const DEFAULT_NLP_TEXT = () => {
+	const items = [
+		`I love my father and my mother. They work hard. She is always nice but he is sometimes rude.`,
+		`My sister is swimming with her classmates. They are not bad, but she is better. I love watching her swim.`,
+		`My mother's name is Sasha, she likes dogs.`
+	];
+	return items[Math.floor(Math.random()*items.length)];
+}
 
 const loading = () => {
 	document.body.classList.toggle('loading');
@@ -47,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			$input.value = queryText;
 			coref.parse(queryText);
 		} else {
-			coref.parse(DEFAULT_NLP_TEXT);  // Trigger run with default text.
+			coref.parse(DEFAULT_NLP_TEXT());  // Trigger run with default text.
 		}
 	}
 	
@@ -63,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		evt.preventDefault();
 		const text = ($input.value.length > 0)
 			? $input.value
-			: DEFAULT_NLP_TEXT;
+			: DEFAULT_NLP_TEXT();
 		updateURL(text);
 		coref.parse(text);
 	});
