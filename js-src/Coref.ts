@@ -177,5 +177,10 @@ class Coref {
 				this.svgContainer.appendChild(arrow.generate());
 			}
 		}
+		
+		// Finally do a second pass to move all red/orange arrows to the top of the grey ones.
+		document.querySelectorAll('.displacy-arrow.score-ok').forEach((arw) => {
+			this.svgContainer.appendChild(arw);
+		});
 	}
 }
