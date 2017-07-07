@@ -1,5 +1,5 @@
 
-const ENDPOINT = "http://spacy.huggingface.co:8000/all";
+const ENDPOINT = "https://coref.huggingface.co/coref";
 const DEFAULT_NLP_TEXT = `'Lawrence of Arabia' is a highly rated film biography about British Lieutenant T. E. Lawrence. Peter O'Toole plays Lawrence in the film.`;
 
 const loading = () => {
