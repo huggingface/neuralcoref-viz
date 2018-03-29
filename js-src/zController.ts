@@ -19,6 +19,8 @@ const toggleDebug = () => {
 	(<any>icons).forEach((icon) => {
 		icon.classList.toggle('hide');
 	});
+	/// local storage
+	window.localStorage.setItem('debug', document.body.classList.contains('debug').toString());
 };
 
 const coref = new Coref(ENDPOINT, {
@@ -79,8 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		toggleDebug();
 	});
 	
-	// Turn on debug mode by default:
-	toggleDebug();
+	// Turn on debug mode by default, unless `false` is stored in local storage:
+	if (window.localStorage.getItem('debug') !== 'false') {
+		toggleDebug();
+	}
 });
 
 
