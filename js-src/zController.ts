@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		toggleDebug();
 	});
 	
-	// Turn on debug mode by default, unless `false` is stored in local storage:
+	// Turn on debug mode by default, unless the string `false` is stored in local storage:
 	if (window.localStorage.getItem('debug') !== 'false') {
 		toggleDebug();
 	}
